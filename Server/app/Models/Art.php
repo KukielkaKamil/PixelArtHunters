@@ -7,20 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class PixelArt extends Model
+class Art extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
     protected $fillable = ['size','image'];
 
-   public function user(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'art_user', 'pixelart_id', 'user_id');
-    }
-
     public function pixelStop(): BelongsTo
     {
-        return $this->belongsTo(PixelStop::class);
+        return $this->belongsTo(Poi::class);
+    }
+
+   public function user(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'art_users', 'art_id', 'user_id');
     }
 }

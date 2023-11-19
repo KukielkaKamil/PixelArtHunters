@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pixel_stops', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->decimal('longitude');
-            $table->decimal('latitude');
+        Schema::create('art_users', function (Blueprint $table) {
+            $table->foreignId('art_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+
+            $table->primary(['art_id','user_id']);
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pixel_stops');
+        Schema::dropIfExists('art_users');
     }
 };

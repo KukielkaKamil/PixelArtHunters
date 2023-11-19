@@ -46,7 +46,7 @@ class User extends Authenticatable
     ];
 
     public function pixelArt() :BelongsToMany{
-        return $this->BelongsToMany(PixelArt::class, 'user_art', 'user_id', 'pixelart_id');
+        return $this->BelongsToMany(Poi::class, 'art_users', 'user_id', 'art_id');
     }
 
 }

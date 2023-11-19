@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PixelArtController extends Controller
+class PoiController extends Controller
 {
     //
 }

@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(
             [
                 UserSeeder::class,
-                PixelStopSeeder::class,
-                PixelArtSeeder::class,
+                PoiSeeder::class,
+                ArtSeeder::class,
                 ArtUserSeeder::class
             ]
         );

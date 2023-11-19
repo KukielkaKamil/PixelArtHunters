@@ -13,16 +13,16 @@ class ArtUserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('art_user')->insert(
+        DB::table('art_users')->insert(
             [
                 [
-                    'pixel_art_id'=>'1','user_id'=>'1'
+                    'art_id'=>'1','user_id'=>'1'
                 ],
                 [
-                    'pixel_art_id'=>'2','user_id'=>'2'
+                    'art_id'=>'2','user_id'=>'2'
                 ],
                 [
-                    'pixel_art_id'=>'3','user_id'=>'1'
+                    'art_id'=>'3','user_id'=>'1'
                 ],
             ]
         );

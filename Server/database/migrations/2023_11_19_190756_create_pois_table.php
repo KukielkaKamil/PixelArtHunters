@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\PixelStop;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pixel_arts', function (Blueprint $table) {
+        Schema::create('pois', function (Blueprint $table) {
             $table->id();
-            $table->smallInteger('size');
-            $table->binary('image');
-            $table->foreignIdFor(PixelStop::class)->constrained();
+            $table->string('name');
+            $table->decimal('longitude',9,6);
+            $table->decimal('latitude');
+            $table->decimal('modifier');
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pixel_arts');
+        Schema::dropIfExists('pois');
     }
 };

@@ -14,7 +14,7 @@ class Art extends Model
     public $timestamps = false;
     protected $fillable = ['size','image'];
 
-    public function pixelStop(): BelongsTo
+    public function poi(): BelongsTo
     {
         return $this->belongsTo(Poi::class);
     }

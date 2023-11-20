@@ -13,7 +13,7 @@ class Poi extends Model
     public $timestamps = false;
     protected $fillable = ['name', 'longitude', 'latitude', 'modifier'];
 
-    public function pixelArt() :HasMany{
+    public function art() :HasMany{
         return $this->hasMany(Art::class);
     }
 }

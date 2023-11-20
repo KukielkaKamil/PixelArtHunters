@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('longitude',9,6);
-            $table->decimal('latitude');
+            $table->decimal('latitude',9,6);
             $table->decimal('modifier');
         });
     }

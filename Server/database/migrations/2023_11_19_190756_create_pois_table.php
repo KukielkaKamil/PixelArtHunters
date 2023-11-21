@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pixel_stops', function (Blueprint $table) {
+        Schema::create('pois', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('longitude');
-            $table->decimal('latitude');
+            $table->decimal('longitude',9,6);
+            $table->decimal('latitude',9,6);
+            $table->decimal('modifier');
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pixel_stops');
+        Schema::dropIfExists('pois');
     }
 };

@@ -45,8 +45,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function pixelArt() :BelongsToMany{
-        return $this->BelongsToMany(PixelArt::class, 'user_art', 'user_id', 'pixelart_id');
+    public function art() :BelongsToMany{
+        return $this->BelongsToMany(Art::class, 'art_users', 'user_id', 'art_id');
     }
 
 }

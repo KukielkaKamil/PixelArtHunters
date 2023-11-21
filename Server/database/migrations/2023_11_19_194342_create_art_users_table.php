@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('art_user', function (Blueprint $table) {
-            $table->foreignId('pixel_art_id')->constrained();
+        Schema::create('art_users', function (Blueprint $table) {
+            $table->foreignId('art_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->primary(['pixel_art_id','user_id']);
+
+            $table->primary(['art_id','user_id']);
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('art_user');
+        Schema::dropIfExists('art_users');
     }
 };

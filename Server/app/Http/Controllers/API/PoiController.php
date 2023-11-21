@@ -30,4 +30,10 @@ class PoiController extends Controller
         $poi = Poi::findOrFail($id);
         $poi->delete();
     }
+
+    public function poiArtList(int $id){
+        $poi = Poi::findOrFail($id);
+        $art = $poi->art;
+        return response() -> json($art);
+    }
 }

@@ -29,3 +29,4 @@ Route::get('/poi', [PoiController::class, 'index']);
 Route::post('/poi/create', [PoiController::class, 'store']);
 Route::patch('/poi/{id}', [PoiController::class, 'update']);
 Route::delete('/poi/{id}', [PoiController::class, 'destroy']);
+Route::get('/poi/{id}/art', [PoiController::class, 'poiArtList']);

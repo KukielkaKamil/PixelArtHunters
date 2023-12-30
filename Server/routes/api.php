@@ -1,5 +1,11 @@
 <?php
 
+<<<<<<< HEAD
+use App\Http\Controllers\Api\ArtController;
+use App\Http\Controllers\API\PoiController;
+use App\Http\Controllers\API\AuthController;
+=======
+>>>>>>> parent of 435ed29 (Merge branch 'ServerDevelopment' into AndroidDevelopment)
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +23,23 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+<<<<<<< HEAD
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/art', [ArtController::class, 'index']);
+    Route::get('/logout', [AuthController::class, 'logout']);
+});
+// Route::get('/art', [ArtController::class, 'index']);
+Route::post('/art/create', [ArtController::class, 'store']);
+Route::patch('/art/{id}', [ArtController::class, 'update']);
+Route::delete('/art/{id}', [ArtController::class, 'destroy']);
+
+Route::get('/poi', [PoiController::class, 'index']);
+Route::post('/poi/create', [PoiController::class, 'store']);
+Route::patch('/poi/{id}', [PoiController::class, 'update']);
+Route::delete('/poi/{id}', [PoiController::class, 'destroy']);
+Route::get('/poi/{id}/art', [PoiController::class, 'poiArtList']);
+=======
+>>>>>>> parent of 435ed29 (Merge branch 'ServerDevelopment' into AndroidDevelopment)

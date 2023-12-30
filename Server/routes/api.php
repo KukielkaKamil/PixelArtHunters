@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ArtController;
 use App\Http\Controllers\API\PoiController;
+use App\Http\Controllers\API\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/art', [ArtController::class, 'index']);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/art', [ArtController::class, 'index']);
+    Route::get('/logout', [AuthController::class, 'logout']);
+});
+// Route::get('/art', [ArtController::class, 'index']);
 Route::post('/art/create', [ArtController::class, 'store']);
 Route::patch('/art/{id}', [ArtController::class, 'update']);
 Route::delete('/art/{id}', [ArtController::class, 'destroy']);

@@ -1,6 +1,8 @@
 package net.kteam.pixelarthunter
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,62 +16,40 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.JsonRequest
 import net.kteam.pixelarthunter.ui.theme.PixelArtHunterTheme
-
+import org.json.JSONArray
+import org.json.JSONObject
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.test_layout)
-        val textView = findViewById<TextView>(R.id.textView)
+        setContentView(R.layout.login_form)
 
-        val queue = Volley.newRequestQueue(this)
-        val url = "http://192.168.2.190:8000/api/poi"
-        val poiList = POIListSingleton.getInstance().getPoiList()
+        val loginInput = findViewById<EditText>(R.id.loginInput)
+        val passwordInput = findViewById<EditText>(R.id.passwordInput)
+        val responseText = findViewById<TextView>(R.id.responseText)
 
-// Request a string response from the provided URL.
-        val stringRequest = JsonArrayRequest(
-            Request.Method.GET, url, null,
-            { response ->
-//                 Display the first 500 characters of the response string.
-                for( i:Int in 0..1 ){
-                    var currPoi = response.getJSONObject(i)
-                    val id = currPoi.getInt("id")
-                    val name = currPoi.getString("name")
-                    val latitude = currPoi.getDouble("latitude")
-                    val longitude = currPoi.getDouble("longitude")
-                    val modifier = currPoi.getDouble("modifier")
-                  val newPoi = POI(id,name,longitude,latitude,modifier)
-                    poiList.add(newPoi)
-                }
-                textView.text=poiList[0].name
-//                    textView.text="ELO"
-//                textView.text=response.length().toString()
-            },
-            { error-> textView.text = error.toString()})
+        val loginButton = findViewById<Button>(R.id.loginButton)
 
-// Add the request to the RequestQueue.
-        queue.add(stringRequest)
+        loginButton.setOnClickListener {
+            val url ="http://192.168.2.190:8000/api/login"
+            val loginData = JSONObject()
+            loginData.put("email", loginInput.text)
+            loginData.put("password",passwordInput.text)
 
-//        textView.text = poiList.size.toString()
-
+            val arr = JSONArray()
+            arr.put(loginData)
+            val loginRequest = JsonArrayRequest(Request.Method.POST,url,arr,
+                { response ->
+                    responseText.text = response.getJSONObject(1).getString("token")
+                },
+                { error ->
+                    responseText.text = error.toString()
+                })
+            ApiRequestQueue.getInstance(this).addToRequestQueue(loginRequest)
+        }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PixelArtHunterTheme {
-        Greeting("Android")
-    }
-}

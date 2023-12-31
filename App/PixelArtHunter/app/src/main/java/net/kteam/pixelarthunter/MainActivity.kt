@@ -14,12 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.JsonRequest
 import net.kteam.pixelarthunter.ui.theme.PixelArtHunterTheme
-import org.json.JSONArray
 import org.json.JSONObject
 
 class MainActivity : ComponentActivity() {
@@ -27,29 +23,41 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_form)
 
-        val loginInput = findViewById<EditText>(R.id.loginInput)
-        val passwordInput = findViewById<EditText>(R.id.passwordInput)
+        val loginField = findViewById<EditText>(R.id.loginField)
+        val passwordField = findViewById<EditText>(R.id.passwordField)
         val responseText = findViewById<TextView>(R.id.responseText)
 
         val loginButton = findViewById<Button>(R.id.loginButton)
 
         loginButton.setOnClickListener {
-            val url ="http://192.168.2.190:8000/api/login"
-            val loginData = JSONObject()
-            loginData.put("email", loginInput.text)
-            loginData.put("password",passwordInput.text)
+            val url = "http://192.168.2.190:8000/api/login"
 
-            val arr = JSONArray()
-            arr.put(loginData)
-            val loginRequest = JsonArrayRequest(Request.Method.POST,url,arr,
+            val att = JSONObject()
+            att.put("email", loginField.text)
+            att.put("password", passwordField.text)
+            val loginRequest = JsonObjectRequest(Request.Method.POST,url,att,
                 { response ->
-                    responseText.text = response.getJSONObject(1).getString("token")
+                    responseText.text ="GREAT SUCCESS"
                 },
                 { error ->
                     responseText.text = error.toString()
                 })
-            ApiRequestQueue.getInstance(this).addToRequestQueue(loginRequest)
         }
     }
 }
 
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    PixelArtHunterTheme {
+        Greeting("Android")
+    }
+}

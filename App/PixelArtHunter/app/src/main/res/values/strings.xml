@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PixelArtHunter</string>
+    <string name="empty"></string>
 </resources>

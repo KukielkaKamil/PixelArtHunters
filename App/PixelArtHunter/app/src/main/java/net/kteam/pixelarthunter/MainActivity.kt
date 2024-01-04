@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
             att.put("password", passwordField.text)
             val loginRequest = JsonObjectRequest(Request.Method.POST,url,att,
                 { response ->
-                    responseText.text ="GREAT SUCCESS"
+                    responseText.text = response.getString("token")
                 },
                 { error ->
                     responseText.text = error.toString()

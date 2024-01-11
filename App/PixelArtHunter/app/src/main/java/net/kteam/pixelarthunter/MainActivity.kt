@@ -1,5 +1,6 @@
 package net.kteam.pixelarthunter
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -27,6 +28,8 @@ class MainActivity : ComponentActivity() {
         val passwordField = findViewById<EditText>(R.id.passwordField)
         val responseText = findViewById<TextView>(R.id.responseText)
 
+        val currUser = User()
+
         val loginButton = findViewById<Button>(R.id.loginButton)
 
         loginButton.setOnClickListener {
@@ -37,11 +40,28 @@ class MainActivity : ComponentActivity() {
             att.put("password", passwordField.text)
             val loginRequest = JsonObjectRequest(Request.Method.POST,url,att,
                 { response ->
+
+//                    currUser.setId(response.getInt("id"))
+//                    currUser.name = response.getString("name")
+//                    currUser.email = response.getString("email")
+//                    currUser.score = response.getInt("score")
+
                     responseText.text = response.getString("token")
                 },
                 { error ->
                     responseText.text = error.toString()
                 })
+
+            ApiRequestQueue.getInstance(this).addToRequestQueue(loginRequest)
+        }
+
+        val registerButton = findViewById<Button>(R.id.registerActivityButton)
+
+        registerButton.setOnClickListener {
+            val intent = Intent(this,DrawMenu::class.java)
+//            intent.putExtra("user", currUser)
+
+            startActivity(intent)
         }
     }
 }

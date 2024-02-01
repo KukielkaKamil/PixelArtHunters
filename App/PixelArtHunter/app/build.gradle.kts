@@ -50,7 +50,9 @@ android {
 }
 
 dependencies {
-
+    implementation("com.mapbox.maps:android:11.1.0")
+    implementation("com.mapbox.extension:maps-compose:11.1.0")
+    implementation("com.github.skydoves:colorpickerview:2.3.0")
     implementation("com.android.volley:volley:1.2.1")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -64,6 +66,7 @@ dependencies {
     implementation("com.google.android.material:material:1.8.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("androidx.gridlayout:gridlayout:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

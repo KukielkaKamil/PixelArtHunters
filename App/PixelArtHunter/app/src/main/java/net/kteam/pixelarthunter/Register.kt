@@ -39,7 +39,7 @@ class Register : ComponentActivity() {
                     responseText.text = error.toString()
                 })
 
-            ApiRequestQueue.getInstance(this).addToRequestQueue(registerRequest)
+            ApiRequestQueue.getInstance(this)
         }
     }
 }

@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.mapbox.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mapbox_cameraTargetLat="50.0197514"
+        app:mapbox_cameraTargetLng="22.0083297"
+        app:mapbox_cameraZoom="2.0"
+        app:mapbox_cameraPitch="0.0"
+        app:mapbox_cameraBearing="0.0"
+        app:mapbox_locationComponentEnabled="true"
+        app:mapbox_locationComponentPuckBearing="heading"
+        app:mapbox_locationComponentLocationPuck= "location_puck_2_d"
+        app:mapbox_locationComponentLocationPuckLocationPuck2DTopImage= "@drawable/circular_button_background"
+        app:mapbox_styleUri="mapbox://styles/krixus/clrwgmog6007u01ph52qtfawq"
+
+        />
+
+</FrameLayout>

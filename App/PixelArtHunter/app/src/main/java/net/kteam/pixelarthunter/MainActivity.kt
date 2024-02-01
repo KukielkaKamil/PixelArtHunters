@@ -6,10 +6,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,15 +16,19 @@ import net.kteam.pixelarthunter.ui.theme.PixelArtHunterTheme
 import org.json.JSONObject
 
 class MainActivity : ComponentActivity() {
+
+    val ApiHandler = ApiRequestQueue.getInstance(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setContentView(R.layout.login_form)
 
         val loginField = findViewById<EditText>(R.id.loginField)
         val passwordField = findViewById<EditText>(R.id.passwordField)
         val responseText = findViewById<TextView>(R.id.responseText)
 
-        val currUser = User()
+//        val currUser = User()
 
         val loginButton = findViewById<Button>(R.id.loginButton)
 
@@ -38,21 +38,31 @@ class MainActivity : ComponentActivity() {
             val att = JSONObject()
             att.put("email", loginField.text)
             att.put("password", passwordField.text)
-            val loginRequest = JsonObjectRequest(Request.Method.POST,url,att,
+            val loginRequest = JsonObjectRequest(
+                Request.Method.GET,url,att,
                 { response ->
-
+                    val loadinDialog = LoadinDialog(this)
+                    loadinDialog.showLoadingDialog()
 //                    currUser.setId(response.getInt("id"))
 //                    currUser.name = response.getString("name")
 //                    currUser.email = response.getString("email")
 //                    currUser.score = response.getInt("score")
+                    ApiHandler.setToken(this,response.getString("token"))
 
                     responseText.text = response.getString("token")
+                    loadinDialog.hideLoadingDialog()
+
+                    val mainMenuIntent = Intent(this,DrawMenu::class.java)
+                    startActivity(mainMenuIntent)
                 },
                 { error ->
+                    if (error.hashCode() == 401){
+                        responseText.text = "401 RESPONSE CODE"
+                    }
                     responseText.text = error.toString()
                 })
 
-            ApiRequestQueue.getInstance(this).addToRequestQueue(loginRequest)
+            ApiHandler.addToRequestQueue(loginRequest)
         }
 
         val registerButton = findViewById<Button>(R.id.registerActivityButton)
@@ -63,21 +73,5 @@ class MainActivity : ComponentActivity() {
 
             startActivity(intent)
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PixelArtHunterTheme {
-        Greeting("Android")
     }
 }

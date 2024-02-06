@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pois', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('description')->nullable();
             $table->decimal('longitude',9,6);
             $table->decimal('latitude',9,6);
             $table->decimal('modifier');

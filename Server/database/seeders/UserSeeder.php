@@ -18,11 +18,11 @@ class UserSeeder extends Seeder
             [
                 [
                     'name' => 'Jan','email' => 'j.grzebyk@gmail.com','password' => Hash::make('1234'),
-                    'score' => '3100'
+                    'score' => '3100','is_admin' => '1'
                 ],
                 [
                     'name' => 'Adam','email' => 'a.pataluch@gmail.com','password' => Hash::make('1234'),
-                    'score' => '3100'
+                    'score' => '3100', 'is_admin' => '0'
                 ]
             ]
         );

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="canvas_sizes">
+        <item>8</item>
+        <item>16 (koszt - 20 pixeli)</item>
+        <item>32 (koszt - 40 pixeli)</item>
+        <item>64 (koszt - 60 pixeli)</item>
+    </string-array>
+</resources>

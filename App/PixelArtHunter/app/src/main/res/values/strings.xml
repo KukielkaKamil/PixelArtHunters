@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PixelArtHunter</string>
+    <string name="empty"></string>
+    <string name="url_base">http://192.168.50.8:8000/api/</string>
+</resources>

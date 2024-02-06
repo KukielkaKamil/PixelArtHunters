@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Poi;
+use App\Models\User;
 
 class PoiController extends Controller
 {
@@ -32,7 +33,7 @@ class PoiController extends Controller
     }
 
     public function poiArtList(int $id){
-        $poi = Poi::findOrFail($id);
+        $poi = POI::with('art.user')->find($id);
         $art = $poi->art;
         return response() -> json($art);
     }

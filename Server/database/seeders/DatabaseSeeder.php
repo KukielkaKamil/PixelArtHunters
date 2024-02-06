@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\PixelStop;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +18,6 @@ class DatabaseSeeder extends Seeder
                 UserSeeder::class,
                 PoiSeeder::class,
                 ArtSeeder::class,
-                ArtUserSeeder::class
             ]
         );
     }

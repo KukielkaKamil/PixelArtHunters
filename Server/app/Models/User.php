@@ -4,7 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -19,10 +19,15 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'login',
+        'name',
         'email',
         'password',
-        'score'
+        'score',
+        'pixels',
+        'description',
+        'last_execution_date',
+        'is_admin'
+
     ];
 
     /**
@@ -45,8 +50,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function art() :BelongsToMany{
-        return $this->BelongsToMany(Art::class, 'art_users', 'user_id', 'art_id');
+    public function art() :HasMany{
+        return $this->hasMany(Art::class);
     }
 
 }

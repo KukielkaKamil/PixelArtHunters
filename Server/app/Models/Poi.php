@@ -11,7 +11,7 @@ class Poi extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $fillable = ['name', 'longitude', 'latitude', 'modifier'];
+    protected $fillable = ['name','description', 'longitude', 'latitude', 'modifier'];
 
     public function art() :HasMany{
         return $this->hasMany(Art::class);

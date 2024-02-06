@@ -20,7 +20,11 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->integer('score');
+            $table->integer('score')->default(0);
+            $table->integer('pixels')->default(0);
+            $table->text('description')->default('Brak opisu');
+            $table->date('last_execution_date')->nullable();
+            $table->boolean('is_admin')->default(0);
         });
     }
 

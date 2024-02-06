@@ -1,0 +1,139 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.mapbox.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mapbox_cameraBearing="0.0"
+        app:mapbox_cameraPitch="0.0"
+        app:mapbox_cameraTargetLat="50.0197514"
+        app:mapbox_cameraTargetLng="22.0083297"
+        app:mapbox_cameraZoom="17.0"
+        app:mapbox_locationComponentEnabled="true"
+        app:mapbox_locationComponentLocationPuck="location_puck_2_d"
+        app:mapbox_locationComponentLocationPuckLocationPuck2DBearingImage="@drawable/circular_button_background"
+        app:mapbox_locationComponentLocationPuckLocationPuck2DShadowImage="@drawable/circular_button_background"
+        app:mapbox_locationComponentLocationPuckLocationPuck2DTopImage="@drawable/circular_button_background"
+        app:mapbox_locationComponentPuckBearing="heading"
+        app:mapbox_styleUri="mapbox://styles/krixus/clrwgmog6007u01ph52qtfawq"
+
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="8dp">
+
+    </com.mapbox.maps.MapView>
+
+    <TextView
+        android:id="@+id/yourPixels"
+        android:layout_width="197dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/roundstyles"
+        android:backgroundTint="#FFFF4800"
+        android:text="Twoje piksele: 2137"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/userLabel"
+            android:layout_width="136dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/roundstyles"
+            android:text="User"
+            android:textSize="16dp"
+            android:textColor="#FFFF4800"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/userNameDisplay"
+            android:layout_width="181dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/roundstyles"
+            android:backgroundTint="#FFFF4800"
+            android:text="Nazwa użytkownika"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/flashButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userLabel"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageButton
+            android:id="@+id/logoutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/flashButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/flashlight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/logoutButton"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/shakeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/shake"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/flashButton"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/profileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/shakeButton"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/reportedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/reported"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/profileButton"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

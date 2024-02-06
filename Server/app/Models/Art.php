@@ -12,15 +12,21 @@ class Art extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $fillable = ['size','image'];
+    protected $fillable = ['size','image', 'reported'];
 
     public function poi(): BelongsTo
     {
         return $this->belongsTo(Poi::class);
     }
 
-   public function user(): BelongsToMany
+    public function user(): BelongsTo
     {
-        return $this->belongsToMany(User::class, 'art_users', 'art_id', 'user_id');
+        return $this->belongsTo(User::class);
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes', 'art_id', 'user_id')
+            ->withPivot('liked');
     }
 }
